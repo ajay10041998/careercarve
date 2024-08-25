@@ -15,6 +15,7 @@
     color: white; /* White text color */
     padding: 20px;
     border-radius: 8px;
+    width:100%;
 }
 
 .mentors-header h1 {
@@ -33,6 +34,7 @@
     margin-bottom: 30px;
     padding: 20px;
     border-radius: 8px;
+    width:100%
 }
 
 /* About section background */
