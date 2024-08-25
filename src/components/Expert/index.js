@@ -78,7 +78,7 @@ class Expert extends Component {
                     {mentors.map((mentor) => (
                         <div key={mentor.mentor_id} className="mentor-card">
                             <div className="mentor-initial">
-                                {mentor.mentor_name ? mentor.mentor_Name.charAt(0) : 'N/A'}
+                                {mentor.mentor_Name.charAt(0)}
                             </div>
                             <div className="mentor-details">
                                 <div className="mentor-name">{mentor.mentor_Name || 'Name not available'}</div>
