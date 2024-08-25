@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Mentors from './components/Mentors';
+import Domain from './components/Domain';
+import Expert from './components/Expert'; // Import the Mentor component
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Mentors} />
+        <Route exact path="/domain" component={Domain} />
+        <Route exact path="/mentors/:area_of_expert" component={Expert} /> {/* Handle domain parameter */}
+      </Switch>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

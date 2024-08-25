@@ -1,0 +1,127 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.mentors-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.mentors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.mentor-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-basis: calc(33.33% - 40px);
+    box-sizing: border-box;
+}
+
+.mentor-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #5e72e4;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.mentor-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.mentor-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.mentor-area {
+    font-size: 16px;
+    color: #718096;
+    margin-bottom: 5px;
+}
+
+.mentor-availability {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Media Queries */
+
+@media (max-width: 1024px) {
+    .mentor-card {
+        flex-basis: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .mentor-card {
+        flex-basis: calc(100% - 40px);
+    }
+
+    .mentor-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mentor-initial {
+        margin-bottom: 10px;
+    }
+
+    .mentor-details {
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .mentor-card {
+        padding: 15px;
+    }
+
+    .mentor-initial {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .mentor-name {
+        font-size: 16px;
+    }
+
+    .mentor-area {
+        font-size: 14px;
+    }
+
+    .mentor-availability {
+        font-size: 12px;
+    }
+}
