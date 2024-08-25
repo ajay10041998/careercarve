@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import './index.css'; // Make sure to create and link this CSS file
+import './index.css';
 
 class Expert extends Component {
     state = {
         mentors: [],
         isLoading: true,
-        error: null
+        error: null,
+        showPopup: false,
+        selectedMentor: null,
+        studentName: '',
+        availability: '',
+        areaOfInterest: ''
     };
 
     componentDidMount() {
@@ -31,8 +36,32 @@ class Expert extends Component {
         }
     };
 
+    openPopup = (mentor) => {
+        this.setState({ showPopup: true, selectedMentor: mentor });
+    };
+
+    closePopup = () => {
+        this.setState({ showPopup: false, selectedMentor: null });
+    };
+
+    handleInputChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission here
+        console.log('Form submitted with:', {
+            studentName: this.state.studentName,
+            availability: this.state.availability,
+            areaOfInterest: this.state.areaOfInterest,
+            mentor: this.state.selectedMentor
+        });
+        this.closePopup();
+    };
+
     render() {
-        const { mentors, isLoading, error } = this.state;
+        const { mentors, isLoading, error, showPopup, selectedMentor, studentName, availability, areaOfInterest } = this.state;
 
         if (isLoading) {
             return <div>Loading...</div>;
@@ -49,16 +78,58 @@ class Expert extends Component {
                     {mentors.map((mentor) => (
                         <div key={mentor.mentor_id} className="mentor-card">
                             <div className="mentor-initial">
-                                {mentor.mentor_Name.charAt(0)}
+                                {mentor.mentor_name ? mentor.mentor_Name.charAt(0) : 'N/A'}
                             </div>
                             <div className="mentor-details">
-                                <div className="mentor-name">{mentor.mentor_Name}</div>
-                                <div className="mentor-area">{mentor.area_of_expert}</div>
-                                <div className="mentor-availability">{mentor.availability}</div>
+                                <div className="mentor-name">{mentor.mentor_Name || 'Name not available'}</div>
+                                <div className="mentor-area">{mentor.area_of_expert || 'Expertise not available'}</div>
+                                <div className="mentor-availability">{mentor.availability || 'Availability not available'}</div>
+                                <button className="button-primary" onClick={() => this.openPopup(mentor)}>Book Now</button>
                             </div>
                         </div>
                     ))}
                 </div>
+                {showPopup && (
+                    <div className="popup-overlay">
+                        <div className="popup-content">
+                            <h2>Book a Session with {selectedMentor.mentor_name}</h2>
+                            <form onSubmit={this.handleSubmit}>
+                                <label>
+                                    Student Name:
+                                    <input
+                                        type="text"
+                                        name="studentName"
+                                        value={studentName}
+                                        onChange={this.handleInputChange}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    Availability:
+                                    <input
+                                        type="text"
+                                        name="availability"
+                                        value={availability}
+                                        onChange={this.handleInputChange}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    Area of Interest:
+                                    <input
+                                        type="text"
+                                        name="areaOfInterest"
+                                        value={areaOfInterest}
+                                        onChange={this.handleInputChange}
+                                        required
+                                    />
+                                </label>
+                                <button type="submit" className="button-primary">Submit</button>
+                                <button type="button" onClick={this.closePopup} className="button-secondary">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
